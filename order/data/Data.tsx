@@ -8,7 +8,7 @@ export const products : {item:string, qty:number, price:number}[] = [
     {item: 'Turkey Lap', qty:1, price: 3000},
     {item: 'Chicken gizard', qty:1, price: 500},
     {item: 'Beef', qty:1, price: 700},
-    {item: 'Agemawo', qty:1, price: 2000},
+    {item: 'Pomo', qty:1, price: 2000},
     {item: 'Cow Tail', qty:1, price: 4000},
     {item: 'Goat Leg', qty:1, price: 4000},
 ]

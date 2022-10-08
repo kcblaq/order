@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Checkbox, Flex, Spacer, Text, Button, useTheme, TableContainer, Table, Tr, Td } from '@chakra-ui/react'
+import { Box, Checkbox, Flex, Spacer, Text, Button, useTheme, TableContainer, Table, Tr, Td, GridItem } from '@chakra-ui/react'
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { products } from "../data/Data"
 
@@ -20,21 +20,19 @@ export default function Cart() {
         <Text color='#596273' fontSize='12px'> No 26, Agbowo opposite Agowo shopping complex</Text>
         <Box bg='#fff' width='100%' minH='20px' mt={6} p={2} borderRadius={10}>
           <Text mt={6}> Product Ordered</Text>
-          <TableContainer mt={6}>
+         {/* <Box>
+         <TableContainer mt={6}>
             <Table size='sm'>
 
 
-              {products.map((item, i) => {
-                return (
-                  <>
-                    <Tr width='100%'>
-                      <Td align='left' key={i}>{item.item} </Td>
-                      <Spacer />
-                      <Td align='right'> &#x20A6; {item.price} </Td>
-                    </Tr>
-                  </>
-                )
-              })}
+              {products.map((item, i) => (
+                <Tr key={item.item} width='100%'>
+                  <Td align='left'>{item.item} </Td>
+                  <Spacer />
+                  <Td align='right'> &#x20A6; {item.price} </Td>
+                </Tr>
+              )
+              )}
               <Tr width='100%'>
                 <Td align='left'> Total</Td>
                 <Spacer />
@@ -43,6 +41,8 @@ export default function Cart() {
 
             </Table>
           </TableContainer>
+         </Box> */}
+
         </Box>
         <Button bg={theme.colors.primary.main} color='#FFF' width='80%' alignSelf='center' > MAKE PAYMENT  </Button>
       </Box>

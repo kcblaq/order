@@ -14,8 +14,8 @@ const Home: NextPage = () => {
   const prod = products;
   const theme = useTheme()
   return (
-    // <Products />
-    <Cart />
+    <Products />
+    // <Cart />
 
   )
 }

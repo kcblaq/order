@@ -1,3 +1,4 @@
+import React, {useState} from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -5,13 +6,57 @@ import styles from '../styles/Home.module.css'
 import { Box, Button, Text, Input, Flex, Spacer, Checkbox, Select, useTheme } from '@chakra-ui/react'
 import { AiFillCaretDown } from "react-icons/ai"
 import { products } from "../data/Data"
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../pages/cartReducer'
 
 
 export const Products: NextPage = () => {
-  const all = products.map(item => item.item)
-  const prod = products;
-  // console.log(prod)
+
+  const [selected, setSelected] = useState([])
+  const [total, setToral] = useState(0)
+  const [cartItems, setCartItem] = useState([])
+
+  
+  const dispatch = useDispatch()
   const theme = useTheme()
+  
+//   const toCart: { item: string; price: number }[] = []
+// const HandleCheckout = ()=> {
+//   dispatch(addToCart({cartItems, total}))
+// }
+
+const pushToArr = (data: { e: any; item: string; price: number; id: number }) => {
+  const {e,item, price, id} = data
+  const arr = []
+if(e.target.checked){
+  const temp = {item,price,id}
+  const result = cartItems.concat(temp).flat(Infinity)
+  arr.push(result)
+  setCartItem(result)
+  // console.log(result);
+  
+  
+} else {
+  let newArr = JSON.parse(JSON.stringify(cartItems))
+  let itemIndex = ''
+   newArr.map((elem, i) => {
+    if(elem.item === item) {
+      itemIndex = newArr.indexOf(elem)
+    }
+    
+    
+  })
+  // console.log(itemIndex)
+  let toDelete = newArr.splice(itemIndex, 1)
+  // console.log(cartItems)
+  // console.log(newArr)
+  // console.log(toDelete)
+  setCartItem(newArr)
+}
+// setCartItem(arr)
+  // console.log('Checked')
+}
+console.log(cartItems)
   return (
 
     <>
@@ -20,28 +65,29 @@ export const Products: NextPage = () => {
           <Flex align='center'>
             <Text color='#092443' fontWeight='700'> New Order </Text>
             <Spacer />
-            <Button px={8} bgColor='red' color='#fff'> NEXT </Button>
+            <Button px={8} bgColor='red' color='#fff' onClick={() =>HandleCheckout()}> NEXT </Button>
           </Flex>
             <Text color='#CDCCCC' fontWeight='700' align='left'> SELECT PRODUCTS </Text>
           <Flex bgColor='#F6F5F5' color='#092443' display='flex' alignContent='center' mt={4} >
             <Select width='30%' borderColor={theme.colors.primary.main} bg={theme.colors.faint.main} mr={2}>
-              {prod.map((option, i) => <option key={i} value={option.item}> {option.item}</option>)}
+              {products.map((option, i) => <option key={i} value={option.item}> {option.item}</option>)}
             </Select>
             <Spacer/>
             <Input placeholder='Search' bgColor='#fff' size='md' />
 
           </Flex>
           <Box bgColor='#F6F5F5' color='#092443' display='flex' flexDirection='column' alignContent='center' justifyContent='space-between' mt={14}>
-            {products.map((item, i) => {
+            {products.map(({item, price}, id) => {
               return (
-                <>
-                  <Flex mt={4}>
-                    <Checkbox size='md' mr='1rem' />
-                    <p key={i}>{item.item} </p>
+              
+                  <Flex key={item} mt={4}>
+                    <Checkbox  size='md' mr='1rem' onChange={(e) => pushToArr({e,item, price, id})} />
+                    {/* <Checkbox  size='md' mr='1rem' /> */}
+                    <p >{item} </p>
                     <Spacer />
-                    <p>&#x20A6; {item.price} </p>
+                    <p >&#x20A6; {price} </p>
                   </Flex>
-                </>
+               
               )
             })}
           </Box>

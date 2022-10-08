@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import {extendTheme, ChakraProvider} from '@chakra-ui/react'
+import {Provider} from 'react-redux'
+import { store } from './api/store'
 
 const theme = extendTheme({
   colors: {
@@ -19,7 +21,9 @@ const theme = extendTheme({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+     <Provider store={store}>
+     <Component {...pageProps} />
+     </Provider>
     </ChakraProvider>
   )
 }
