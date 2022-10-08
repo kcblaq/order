@@ -7,7 +7,9 @@ import { Box, Button, Text, Input, Flex, Spacer, Checkbox, Select, useTheme } fr
 import { AiFillCaretDown } from "react-icons/ai"
 import { products } from "../data/Data"
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../pages/cartReducer'
+import cartReducer, { addToCart } from '../features/cartReducer'
+
+
 
 
 export const Products: NextPage = ({ show }) => {
