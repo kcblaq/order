@@ -38,7 +38,7 @@ export default function Cart({show}) {
                 </Tr>
               )
               )}
-              <Tr width='100%'>
+              <Tr width='100%' fontWeight={900}>
                 <Td align='left'> Total</Td>
                 <Spacer />
                 <Td align='right'>&#x20A6; {total}</Td>
