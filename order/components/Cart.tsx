@@ -2,11 +2,14 @@ import React from 'react'
 import { Box, Checkbox, Flex, Spacer, Text, Button, useTheme, TableContainer, Table, Tr, Td, GridItem } from '@chakra-ui/react'
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { products } from "../data/Data"
+import {useSelector} from 'react-redux'
 
 
 export default function Cart() {
   const theme = useTheme()
-  const Total = 4000
+
+  const cartContent = useSelector((state) => state.cart.cartItems)
+  console.log(cartContent)
   return (
     <Box bgColor='#fff' color='#000' minH='100vh' >
       <Box bgColor='#F6F5F5' color='#092443' display='flex' gap='10px' flexDirection='column' maxW='414px' margin='0 auto' py={20} px={8} minH='100vh'>

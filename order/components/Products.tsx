@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -11,26 +11,21 @@ import { addToCart } from '../pages/cartReducer'
 
 
 export const Products: NextPage = () => {
-
   const [selected, setSelected] = useState([])
   const [total, setTotal] = useState(0)
   const [cartItems, setCartItem] = useState([])
 
-
   const dispatch = useDispatch()
-  const cartDetail = useSelector((state) => state.cart)
+  const cartDetail = useSelector((state: any) => state.cart)
   const theme = useTheme()
 
-  console.log( typeof cartDetail)
-  // const toCart: { item: string; price: number }[] = []
   const HandleCheckout = () => {
-    
+
     dispatch(addToCart({ cartItems, total }))
+
   }
 
-
-
-  const getTotal = (data) => {
+  const getTotal = (data: any[]) => {
     let result = data.reduce((acc, ar) => {
       console.log(ar)
       return ar.price + acc
@@ -41,39 +36,30 @@ export const Products: NextPage = () => {
   const pushToArr = (data: { e: any; item: string; price: number; id: number }) => {
     const { e, item, price, id } = data
     const arr = []
-    if (e.target.checked) {
+
+      if (e.target.checked) {
       const temp = { item, price, id }
       const result = cartItems.concat(temp).flat(Infinity)
       arr.push(result)
       setCartItem(result)
       getTotal(result)
-
-
-
-
     } else {
       let newArr = JSON.parse(JSON.stringify(cartItems))
       let itemIndex = ''
-      newArr.map((elem, i) => {
-        if (elem.item === item) {
+      newArr.map((elem: { item: string },i: any)=>{
+        if(elem.item === item){
           itemIndex = newArr.indexOf(elem)
         }
-
-
       })
-
-      let toDelete = newArr.splice(itemIndex, 1)
-
+      let toDelete = newArr.splice(itemIndex,1)
       setCartItem(newArr)
       getTotal(newArr)
     }
+  }
 
 
-    console.log(cartItems)
-    console.log(total)
-    return (
-
-      <>
+  return (
+          <>
         <Box bgColor='#fff' color='#000' minH='100vh' >
           <Box bgColor='#F6F5F5' color='#092443' display='flex' gap='10px' flexDirection='column' maxW='414px' margin='0 auto' py={20} px={8} minH='100vh'>
             <Flex align='center'>
@@ -95,8 +81,7 @@ export const Products: NextPage = () => {
                 return (
 
                   <Flex key={item} mt={4}>
-                    <Checkbox size='md' mr='1rem' onChange={(e) => pushToArr({ e, item, price, id })} />
-                    {/* <Checkbox  size='md' mr='1rem' /> */}
+                    <Checkbox size='md' mr='1rem' onChange={(e) => pushToArr({ e, item, price, id })} />  
                     <p >{item} </p>
                     <Spacer />
                     <p >&#x20A6; {price} </p>
@@ -109,8 +94,5 @@ export const Products: NextPage = () => {
           </Box>
         </Box>
       </>
-
-    )
-  }
-
-  export default Products
+  )
+}

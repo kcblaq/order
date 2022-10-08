@@ -1,12 +1,14 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import Products from '../components/Products'
+// import Products from '../components/Products'
 import styles from '../styles/Home.module.css'
 import { Box, Button, Text, Input, Flex, Spacer, Checkbox, Select, useTheme } from '@chakra-ui/react'
 import { AiFillCaretDown } from "react-icons/ai"
 import { products } from "../data/Data"
 import Cart from '../components/Cart'
+import {Products} from '../components/Products'
+
 
 
 const Home: NextPage = () => {
