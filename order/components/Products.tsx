@@ -29,9 +29,9 @@ export const Products: NextPage = ({ show }) => {
   }
 
   const getTotal = (data: any[]) => {
-    let result = data.reduce((acc, ar) => {
+    let result = data.reduce((ac, ar) => {
       console.log(ar)
-      return ar.price + acc
+      return ar.price + ac
     }, 0)
     setTotal(result)
   }
