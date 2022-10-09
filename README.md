@@ -1,3 +1,3 @@
 # order
 
-This project was deployed to vercel, domain is https://order-kcblaq.vercel.app/
+This project was deployed to vercel, domain is https://order-yzxy.vercel.app/
